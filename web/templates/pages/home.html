@@ -1,26 +1,107 @@
 {{define "content"}}
-<div class="card">
-  <h1 style="margin: 0 0 10px 0;">{{index .Content "Name"}}</h1>
-  <div class="pill">{{index .Content "Role"}}</div>
 
-  <p style="margin-top: 14px; line-height: 1.6;">
-    {{index .Content "Summary"}}
+<!-- INICIO -->
+<section id="inicio" class="section hero anchor-offset">
+  <div class="hero-grid">
+    <div>
+      <h1>
+        <span class="role" data-i18n="hero.role">Desarrollador Full Stack</span>
+        <span class="name" data-i18n="hero.name">{{.Name}}</span>
+      </h1>
+
+      <p data-i18n="hero.summary">
+        Desarrollo aplicaciones web end-to-end: interfaces claras, APIs robustas y despliegues ordenados.
+        Enfocado en performance, mantenibilidad y experiencia de usuario.
+      </p>
+
+      <div class="social">
+        <a class="icon-btn" href="{{.Social.Github}}" target="_blank" rel="noreferrer" title="GitHub">🐙</a>
+        <a class="icon-btn" href="{{.Social.Email}}" title="Email">✉️</a>
+        <a class="icon-btn" href="{{.Social.Linkedin}}" target="_blank" rel="noreferrer" title="LinkedIn">in</a>
+      </div>
+    </div>
+
+    <div>
+      <div class="avatar">IMG</div>
+    </div>
+  </div>
+</section>
+
+<!-- STACK -->
+<section id="stack" class="section anchor-offset">
+  <h2 data-i18n="stack.title">Stack</h2>
+
+  <div class="stack-grid">
+    {{range .Stack}}
+      <div class="stack-item">
+        <div class="stack-logo">{{printf "%.2s" .Label}}</div>
+        <div class="stack-name">{{.Label}}</div>
+      </div>
+    {{end}}
+  </div>
+
+  <p class="muted" style="margin-top:14px;">
+    *Los “logos” son placeholders por ahora (iniciales). Después los cambiamos por imágenes reales.
+  </p>
+</section>
+
+<!-- PROYECTOS -->
+<section id="proyectos" class="section anchor-offset">
+  <h2 data-i18n="projects.title">Proyectos</h2>
+  <p class="muted" data-i18n="projects.subtitle" style="margin-top:-6px;">
+    Tarjetas con resumen + detalles (flip).
   </p>
 
-  <p style="margin-top: 10px; opacity: 0.9;">
-    📍 {{index .Content "Location"}} <br />
-    📧 {{index .Content "Email"}} <br />
-    🔗 <a style="color:#e6e6e6;" href="{{index .Content "GitHub"}}" target="_blank" rel="noreferrer">GitHub</a>
-  </p>
-</div>
+  <div class="projects-grid" style="margin-top:18px;">
+    {{range .Projects}}
+      <div class="flip">
+        <div class="flip-inner">
 
-<div class="card">
-  <h2 style="margin: 0 0 10px 0;">Stack (ejemplo)</h2>
-  <ul style="margin: 0; padding-left: 20px; line-height: 1.8;">
-    <li>Backend: Go</li>
-    <li>Frontend: HTML Templates (SSR)</li>
-    <li>Control de versiones: Git + GitHub</li>
-    <li>Próximo: i18n ES/EN + sección Proyectos</li>
-  </ul>
-</div>
+          <!-- FRONT -->
+          <div class="card-face front">
+            <div class="img">{{.ImageText}}</div>
+            <div class="body">
+              <p class="title">{{.Title}}</p>
+              <p class="desc">{{.Description}}</p>
+            </div>
+          </div>
+
+          <!-- BACK -->
+          <div class="card-face back">
+            <div>
+              <span class="badge" data-i18n="projects.freelance">Freelancer</span>
+              <div class="muted" style="margin-top:10px; font-weight:900;">{{.DateRange}}</div>
+
+              <div class="tech">
+                {{range .Tech}}
+                  <span class="t">{{.}}</span>
+                {{end}}
+              </div>
+            </div>
+
+            <button class="btn" type="button" data-i18n="projects.access">
+              Acceder a proyecto
+            </button>
+          </div>
+
+        </div>
+      </div>
+    {{end}}
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto" class="section anchor-offset">
+  <h2 data-i18n="contact.title">Contacto</h2>
+  <p class="muted" data-i18n="contact.subtitle" style="margin-top:-6px;">
+    Si te interesa trabajar conmigo, estos son mis canales:
+  </p>
+
+  <div class="contact" style="margin-top:18px;">
+    <a class="big" href="{{.Social.Github}}" target="_blank" rel="noreferrer">GitHub</a>
+    <a class="big" href="{{.Social.Email}}">Email</a>
+    <a class="big" href="{{.Social.Linkedin}}" target="_blank" rel="noreferrer">LinkedIn</a>
+  </div>
+</section>
+
 {{end}}
