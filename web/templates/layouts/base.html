@@ -1,0 +1,53 @@
+{{define "base"}}
+<!doctype html>
+<html lang="{{.Lang}}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{{.Title}}</title>
+
+    <style>
+      body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; margin: 0; background: #0b0f17; color: #e6e6e6; }
+      .container { max-width: 980px; margin: 0 auto; padding: 28px 18px; }
+      header { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+      .brand { font-weight: 700; letter-spacing: 0.2px; }
+      nav a { color: #e6e6e6; text-decoration: none; margin-left: 14px; opacity: 0.9; }
+      nav a:hover { opacity: 1; text-decoration: underline; }
+      .pill { display:inline-block; padding: 6px 10px; border: 1px solid rgba(255,255,255,0.15); border-radius: 999px; font-size: 13px; }
+      .card { margin-top: 18px; padding: 18px; border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; background: rgba(255,255,255,0.03); }
+      footer { margin-top: 36px; opacity: 0.8; font-size: 13px; }
+      .lang { display: flex; gap: 8px; }
+      .btn { cursor: pointer; padding: 6px 10px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.03); color: #e6e6e6; }
+      .btn.active { border-color: rgba(255,255,255,0.35); background: rgba(255,255,255,0.07); }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <header>
+        <div class="brand">Portfolio</div>
+
+        <div class="lang">
+          <!-- Por ahora no cambia idioma (en el próximo paso lo conectamos) -->
+          <button class="btn {{if .IsES}}active{{end}}" type="button" title="Español">🇦🇷 ES</button>
+          <button class="btn {{if .IsEN}}active{{end}}" type="button" title="English">🇺🇸 EN</button>
+        </div>
+
+        <nav>
+          <a href="/">Home</a>
+          <!-- Próximo paso -->
+          <!-- <a href="/projects">Proyectos</a> -->
+        </nav>
+      </header>
+
+      <main>
+        {{template "content" .}}
+      </main>
+
+      <footer>
+        <div class="pill">Go SSR • Router • Templates • Próximo: i18n + proyectos</div>
+      </footer>
+    </div>
+  </body>
+</html>
+{{end}}

@@ -1,0 +1,26 @@
+{{define "content"}}
+<div class="card">
+  <h1 style="margin: 0 0 10px 0;">{{index .Content "Name"}}</h1>
+  <div class="pill">{{index .Content "Role"}}</div>
+
+  <p style="margin-top: 14px; line-height: 1.6;">
+    {{index .Content "Summary"}}
+  </p>
+
+  <p style="margin-top: 10px; opacity: 0.9;">
+    📍 {{index .Content "Location"}} <br />
+    📧 {{index .Content "Email"}} <br />
+    🔗 <a style="color:#e6e6e6;" href="{{index .Content "GitHub"}}" target="_blank" rel="noreferrer">GitHub</a>
+  </p>
+</div>
+
+<div class="card">
+  <h2 style="margin: 0 0 10px 0;">Stack (ejemplo)</h2>
+  <ul style="margin: 0; padding-left: 20px; line-height: 1.8;">
+    <li>Backend: Go</li>
+    <li>Frontend: HTML Templates (SSR)</li>
+    <li>Control de versiones: Git + GitHub</li>
+    <li>Próximo: i18n ES/EN + sección Proyectos</li>
+  </ul>
+</div>
+{{end}}
