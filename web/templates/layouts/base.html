@@ -263,10 +263,20 @@
         display:flex;
         align-items:center;
         justify-content:center;
-        font-weight: 900;
-        letter-spacing: .5px;
         opacity: .95;
       }
+
+      .stack-logo img{
+        width: 26px;
+        height: 26px;
+        display:block;
+      }
+
+      html[data-theme="dark"] .stack-logo img{
+        filter: invert(1) brightness(1.2);
+        opacity: 0.95;
+      }
+
       .stack-name{
         font-weight: 800;
         opacity: .95;
@@ -316,6 +326,15 @@
           radial-gradient(circle at 30% 30%, rgba(255,255,255,.12), transparent 60%),
           rgba(255,255,255,.03);
       }
+
+      /* ✅ ESTE ES EL CAMBIO CLAVE: que el thumb se vea bien */
+      .front .img img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
       .front .body{ padding: 18px; }
       .front .title{
         font-weight: 900;
@@ -376,6 +395,13 @@
       /* Smooth scroll */
       html{ scroll-behavior: smooth; }
       .anchor-offset{ scroll-margin-top: 80px; }
+
+      /* i18n server-side para textos de proyectos (ES/EN) */
+      .lang-en { display: none; }
+
+      html[data-lang="en"] .lang-es { display: none; }
+      html[data-lang="en"] .lang-en { display: inline; }
+
     </style>
   </head>
 
@@ -513,6 +539,7 @@
         const current = document.documentElement.getAttribute("data-lang") || "es";
         setLang(current === "es" ? "en" : "es");
       });
+      
     </script>
   </body>
 </html>

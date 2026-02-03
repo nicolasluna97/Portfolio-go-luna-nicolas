@@ -34,7 +34,9 @@
   <div class="stack-grid">
     {{range .Stack}}
       <div class="stack-item">
-        <div class="stack-logo">{{printf "%.2s" .Label}}</div>
+        <div class="stack-logo">
+          <img src="/static/icons/{{.Key}}.svg" alt="{{.Label}}">
+        </div>
         <div class="stack-name">{{.Label}}</div>
       </div>
     {{end}}
@@ -59,10 +61,22 @@
 
           <!-- FRONT -->
           <div class="card-face front">
-            <div class="img">{{.ImageText}}</div>
+            <div class="img">
+              <img src="{{.Thumb}}" alt="{{.TitleES}}" loading="lazy">
+            </div>
+
             <div class="body">
-              <p class="title">{{.Title}}</p>
-              <p class="desc">{{.Description}}</p>
+              <!-- ✅ TÍTULO ES/EN: se muestra uno u otro según data-lang del html -->
+              <p class="title">
+                <span class="lang-es">{{.TitleES}}</span>
+                <span class="lang-en">{{.TitleEN}}</span>
+              </p>
+
+              <!-- ✅ DESC ES/EN -->
+              <p class="desc">
+                <span class="lang-es">{{.DescES}}</span>
+                <span class="lang-en">{{.DescEN}}</span>
+              </p>
             </div>
           </div>
 

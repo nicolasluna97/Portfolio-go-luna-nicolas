@@ -5,11 +5,13 @@ import "net/http"
 func NewRouter() http.Handler {
 	mux := http.NewServeMux()
 
-	mux.HandleFunc("/", Home)
+	// 1) Home handler (templates)
 
-	// Más adelante:
-	// mux.HandleFunc("/projects", Projects)
-	// mux.HandleFunc("/projects/", ProjectDetail)
+	mux.HandleFunc("/", HomeHandler("web/templates"))
+
+	// 2) Static files (icons, images, etc.)
+
+	mux.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("web/static"))))
 
 	return mux
 }
