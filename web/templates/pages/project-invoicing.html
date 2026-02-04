@@ -1,0 +1,47 @@
+{{define "content"}}
+
+<section class="section anchor-offset" style="padding-top:40px;">
+  <a href="/#proyectos" style="display:inline-block; margin-bottom:18px; opacity:.9;">← Volver</a>
+
+  <div style="text-align:center; max-width:900px; margin:0 auto;">
+    <h1 style="margin:0; font-size:54px; letter-spacing:-1px; line-height:1.05;">
+      <span class="lang-es">{{.TitleES}}</span>
+      <span class="lang-en">{{.TitleEN}}</span>
+    </h1>
+
+    <p style="margin-top:14px; color:var(--muted); line-height:1.7; font-size:16px;">
+      <span class="lang-es">{{.DescES}}</span>
+      <span class="lang-en">{{.DescEN}}</span>
+    </p>
+
+    <div style="margin-top:14px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+      <span class="badge">{{.DateRange}}</span>
+      {{range .Tech}}
+        <span class="badge">{{.}}</span>
+      {{end}}
+    </div>
+  </div>
+
+  {{if .Screenshots}}
+  <section style="margin-top:50px;">
+    <h2 style="text-align:center; margin-bottom:18px;">Capturas del sistema</h2>
+
+    <div style="display:flex; flex-direction:column; gap:34px; max-width:980px; margin:0 auto;">
+      {{range .Screenshots}}
+        <div style="border-radius:18px; overflow:hidden; border:1px solid var(--border); box-shadow: var(--shadow);">
+          <img src="{{.}}" alt="Screenshot del sistema" loading="lazy" style="width:100%; height:auto; display:block;">
+        </div>
+
+        <!-- placeholder de bullets (vos después lo llenás por imagen) -->
+        <ul style="margin:0 auto; max-width:980px; color:var(--muted); line-height:1.7;">
+          <li>- Punto a destacar (1)</li>
+          <li>- Punto a destacar (2)</li>
+          <li>- Punto a destacar (3)</li>
+        </ul>
+      {{end}}
+    </div>
+  </section>
+  {{end}}
+</section>
+
+{{end}}

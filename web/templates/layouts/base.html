@@ -110,7 +110,7 @@
       }
       .toggle{
         position: relative;
-        width: 70px;          /* más ancho para que no tape textos */
+        width: 70px;
         height: 28px;
         border-radius: 999px;
         border: 1px solid var(--border2);
@@ -128,8 +128,6 @@
         background: var(--accent);
         transition: transform .22s ease;
       }
-
-      /* El knob ya NO llega encima del texto (recorre menos) */
       .toggle[data-pos="right"] .knob{ transform: translateX(40px); }
 
       .toggle .icon-left, .toggle .icon-right{
@@ -143,7 +141,6 @@
       .toggle .icon-left{ left: 9px; }
       .toggle .icon-right{ right: 9px; }
 
-      /* ES/EN text: más hacia afuera, para que la bolita no lo tape */
       .toggle .txt-left, .toggle .txt-right{
         position:absolute;
         top: 50%;
@@ -155,7 +152,6 @@
       }
       .toggle .txt-left{ left: 8px; }
       .toggle .txt-right{ right: 8px; }
-
       .toggle[data-pos="left"] .txt-left{ opacity: 1; }
       .toggle[data-pos="right"] .txt-right{ opacity: 1; }
 
@@ -221,9 +217,8 @@
         align-items:center;
       }
 
-      /* MÁS GRANDES (tu corrección #1) */
       .icon-btn{
-        width: 54px; height: 54px;   /* antes 42 */
+        width: 54px; height: 54px;
         border-radius: 16px;
         border: 1px solid var(--border2);
         background: var(--bg2);
@@ -233,7 +228,7 @@
         box-shadow: var(--shadow);
         text-decoration:none;
         transition: transform .12s ease;
-        font-size: 18px;             /* ícono más visible */
+        font-size: 18px;
         font-weight: 900;
       }
       .icon-btn:hover{ transform: translateY(-2px); }
@@ -265,28 +260,22 @@
         justify-content:center;
         opacity: .95;
       }
-
       .stack-logo img{
         width: 26px;
         height: 26px;
         display:block;
       }
-
       html[data-theme="dark"] .stack-logo img{
         filter: invert(1) brightness(1.2);
         opacity: 0.95;
       }
+      .stack-name{ font-weight: 800; opacity: .95; }
 
-      .stack-name{
-        font-weight: 800;
-        opacity: .95;
-      }
-
-      /* PROJECTS FLIP (tu corrección #2) */
+      /* PROJECTS */
       .projects-grid{
         display:grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 22px; /* un poco más */
+        gap: 22px;
         align-items: stretch;
       }
       @media (max-width: 1100px){ .projects-grid{ grid-template-columns: 1fr; } }
@@ -295,7 +284,7 @@
       .flip-inner{
         position: relative;
         width: 100%;
-        height: 420px; /* antes 360 -> más grande */
+        height: 420px;
         transition: transform .6s;
         transform-style: preserve-3d;
       }
@@ -315,30 +304,21 @@
       .front{ display:flex; flex-direction:column; }
       .front .img{
         flex: 1.2;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        font-weight: 900;
-        letter-spacing: 2px;
-        opacity: .85;
         border-bottom: 1px solid var(--border);
         background:
           radial-gradient(circle at 30% 30%, rgba(255,255,255,.12), transparent 60%),
           rgba(255,255,255,.03);
       }
-
-      /* ✅ ESTE ES EL CAMBIO CLAVE: que el thumb se vea bien */
       .front .img img{
         width: 100%;
         height: 100%;
         object-fit: cover;
         display: block;
       }
-
       .front .body{ padding: 18px; }
       .front .title{
         font-weight: 900;
-        font-size: 20px;  /* más grande */
+        font-size: 20px;
         margin:0 0 10px 0;
       }
       .front .desc{ margin:0; color: var(--muted); line-height:1.7; }
@@ -372,6 +352,9 @@
         color: var(--text);
         font-weight: 900;
         cursor:pointer;
+        display:inline-flex;
+        align-items:center;
+        justify-content:center;
       }
       html[data-theme="light"] .btn{ background: rgba(0,0,0,.05); }
 
@@ -396,16 +379,15 @@
       html{ scroll-behavior: smooth; }
       .anchor-offset{ scroll-margin-top: 80px; }
 
-      /* i18n server-side para textos de proyectos (ES/EN) */
+      /* i18n ES/EN por data-lang */
       .lang-en { display: none; }
-
       html[data-lang="en"] .lang-es { display: none; }
       html[data-lang="en"] .lang-en { display: inline; }
-
     </style>
   </head>
 
   <body>
+    {{if not .HideNav}}
     <header class="nav" id="navbar">
       <div class="container">
         <div class="nav-inner">
@@ -419,19 +401,15 @@
           </nav>
 
           <div class="nav-right">
-            <!-- Theme switch (corregido) -->
             <div class="switch" title="Tema">
               <div class="switch-label" data-i18n="toggle.theme">Tema</div>
               <div class="toggle" id="themeToggle" data-pos="left" aria-label="toggle theme">
-                <!-- Izquierda: luna (modo oscuro) -->
                 <span class="icon-left">🌙</span>
-                <!-- Derecha: sol (modo claro) -->
                 <span class="icon-right">☀️</span>
                 <span class="knob"></span>
               </div>
             </div>
 
-            <!-- Lang switch -->
             <div class="switch" title="Idioma">
               <div class="switch-label" data-i18n="toggle.lang">Idioma</div>
               <div class="toggle" id="langToggle" data-pos="left" aria-label="toggle language">
@@ -445,39 +423,41 @@
         </div>
       </div>
     </header>
+    {{end}}
 
     <main class="container">
       {{template "content" .}}
     </main>
 
     <script>
-      // Navbar transparencia al scrollear
+      // Navbar scrolled (si existe)
       const navbar = document.getElementById("navbar");
       const onScroll = () => {
+        if (!navbar) return;
         if (window.scrollY > 18) navbar.classList.add("scrolled");
         else navbar.classList.remove("scrolled");
       };
       window.addEventListener("scroll", onScroll);
       onScroll();
 
-      // THEME (corregido)
-      // - dark: knob LEFT + icon luna (a la izquierda)
-      // - light: knob RIGHT + icon sol (a la derecha)
+      // THEME
       const themeToggle = document.getElementById("themeToggle");
       const setTheme = (theme) => {
         document.documentElement.setAttribute("data-theme", theme);
         localStorage.setItem("theme", theme);
-        themeToggle.dataset.pos = (theme === "light") ? "right" : "left";
+        if (themeToggle) themeToggle.dataset.pos = (theme === "light") ? "right" : "left";
       };
       const savedTheme = localStorage.getItem("theme") || "dark";
       setTheme(savedTheme);
 
-      themeToggle.addEventListener("click", () => {
-        const current = document.documentElement.getAttribute("data-theme") || "dark";
-        setTheme(current === "dark" ? "light" : "dark");
-      });
+      if (themeToggle) {
+        themeToggle.addEventListener("click", () => {
+          const current = document.documentElement.getAttribute("data-theme") || "dark";
+          setTheme(current === "dark" ? "light" : "dark");
+        });
+      }
 
-      // Language toggle (client-side por ahora)
+      // LANG
       const langToggle = document.getElementById("langToggle");
 
       const dict = {
@@ -524,22 +504,23 @@
       const setLang = (lang) => {
         document.documentElement.setAttribute("data-lang", lang);
         localStorage.setItem("lang", lang);
-        langToggle.dataset.pos = (lang === "en") ? "right" : "left";
+        if (langToggle) langToggle.dataset.pos = (lang === "en") ? "right" : "left";
 
         document.querySelectorAll("[data-i18n]").forEach(el => {
           const key = el.getAttribute("data-i18n");
-          if (dict[lang][key]) el.textContent = dict[lang][key];
+          if (dict[lang] && dict[lang][key]) el.textContent = dict[lang][key];
         });
       };
 
       const savedLang = localStorage.getItem("lang") || "es";
       setLang(savedLang);
 
-      langToggle.addEventListener("click", () => {
-        const current = document.documentElement.getAttribute("data-lang") || "es";
-        setLang(current === "es" ? "en" : "es");
-      });
-      
+      if (langToggle) {
+        langToggle.addEventListener("click", () => {
+          const current = document.documentElement.getAttribute("data-lang") || "es";
+          setLang(current === "es" ? "en" : "es");
+        });
+      }
     </script>
   </body>
 </html>
