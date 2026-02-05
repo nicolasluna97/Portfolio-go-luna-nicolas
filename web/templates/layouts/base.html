@@ -51,9 +51,11 @@
 
       /* NAVBAR */
       .nav{
-        position: sticky;
+        position: fixed;
         top: 0;
-        z-index: 50;
+        left: 0;
+        right: 0;
+        z-index: 999;
         backdrop-filter: blur(10px);
         background: rgba(0,0,0,.35);
         border-bottom: 1px solid rgba(255,255,255,.06);
@@ -383,6 +385,19 @@
       .lang-en { display: none; }
       html[data-lang="en"] .lang-es { display: none; }
       html[data-lang="en"] .lang-en { display: inline; }
+
+      .social-ico{
+      width: 22px;
+      height: 22px;
+      display:block;
+      }
+
+      /* en modo oscuro, si el SVG es negro, lo invertimos */
+      html[data-theme="dark"] .social-ico{
+        filter: invert(1) brightness(1.15);
+        opacity: .95;
+      }
+
     </style>
   </head>
 

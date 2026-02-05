@@ -15,9 +15,15 @@
       </p>
 
       <div class="social">
-        <a class="icon-btn" href="{{.Social.Github}}" target="_blank" rel="noreferrer" title="GitHub">🐙</a>
-        <a class="icon-btn" href="{{.Social.Email}}" title="Email">✉️</a>
-        <a class="icon-btn" href="{{.Social.Linkedin}}" target="_blank" rel="noreferrer" title="LinkedIn">in</a>
+        <a class="icon-btn" href="{{.Social.Github}}" target="_blank" rel="noreferrer" title="GitHub" aria-label="GitHub">
+          <img class="social-ico" src="/static/icons/github.svg" alt="GitHub">
+        </a>
+
+        <a class="icon-btn" href="{{.Social.Email}}" title="Email" aria-label="Email">✉️</a>
+
+        <a class="icon-btn" href="{{.Social.Linkedin}}" target="_blank" rel="noreferrer" title="LinkedIn" aria-label="LinkedIn">
+          <img class="social-ico" src="/static/icons/linkedin.svg" alt="LinkedIn">
+        </a>
       </div>
     </div>
 
@@ -51,7 +57,7 @@
 <section id="proyectos" class="section anchor-offset">
   <h2 data-i18n="projects.title">Proyectos</h2>
   <p class="muted" data-i18n="projects.subtitle" style="margin-top:-6px;">
-    Tarjetas con resumen + detalles (flip).
+    Proyectos y trabajos realizados terminados como freelancer.
   </p>
 
   <div class="projects-grid" style="margin-top:18px;">
