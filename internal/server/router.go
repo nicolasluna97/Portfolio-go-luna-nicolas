@@ -8,8 +8,9 @@ func NewRouter() http.Handler {
 	// Home
 	mux.HandleFunc("/", HomeHandler("web/templates"))
 
-	// Proyecto específico
+	// Proyectos (rutas puntuales)
 	mux.HandleFunc("/projects/invoicing-system", InvoicingSystemHandler("web/templates"))
+	mux.HandleFunc("/projects/creativistas-web", CreativistasWebHandler("web/templates"))
 
 	// Static files
 	mux.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("web/static"))))

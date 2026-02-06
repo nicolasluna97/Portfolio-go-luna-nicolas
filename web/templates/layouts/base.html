@@ -398,6 +398,61 @@
         opacity: .95;
       }
 
+      .front .img { position: relative; }
+      .thumb-overlay{
+        position:absolute;
+        left: 14px;
+        top: 14px;
+        padding: 8px 10px;
+        border-radius: 12px;
+        border: 1px solid var(--border2);
+        background: rgba(0,0,0,.35);
+        backdrop-filter: blur(8px);
+        font-weight: 900;
+        font-size: 13px;
+        letter-spacing: .2px;
+      }
+
+      /* Proyecto (páginas sin navbar) */
+      .tech-chip{
+        padding: 8px 12px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: var(--bg2);
+        box-shadow: var(--shadow);
+        font-weight: 900;
+        font-size: 12px;
+      }
+
+      .project-shot{
+        width: min(400px, 100%);
+        border-radius: 18px;
+        overflow:hidden;
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow);
+        background: var(--bg2);
+      }
+      .project-shot img{
+        width:100%;
+        height:auto;
+        display:block;
+      }
+
+      .project-notes{
+        max-width: 980px;
+        margin: 22px auto 0;
+        padding: 18px 18px;
+        border-radius: 18px;
+        border: 1px solid var(--border);
+        background: var(--bg2);
+        box-shadow: var(--shadow);
+      }
+      .project-notes h3{
+        font-size: 25px;
+         font-weight: 700;
+        text-align: center;
+      }
+
     </style>
   </head>
 

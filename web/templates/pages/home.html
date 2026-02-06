@@ -15,15 +15,9 @@
       </p>
 
       <div class="social">
-        <a class="icon-btn" href="{{.Social.Github}}" target="_blank" rel="noreferrer" title="GitHub" aria-label="GitHub">
-          <img class="social-ico" src="/static/icons/github.svg" alt="GitHub">
-        </a>
-
-        <a class="icon-btn" href="{{.Social.Email}}" title="Email" aria-label="Email">✉️</a>
-
-        <a class="icon-btn" href="{{.Social.Linkedin}}" target="_blank" rel="noreferrer" title="LinkedIn" aria-label="LinkedIn">
-          <img class="social-ico" src="/static/icons/linkedin.svg" alt="LinkedIn">
-        </a>
+        <a class="icon-btn" href="{{.Social.Github}}" target="_blank" rel="noreferrer" title="GitHub">🐙</a>
+        <a class="icon-btn" href="{{.Social.Email}}" title="Email">✉️</a>
+        <a class="icon-btn" href="{{.Social.Linkedin}}" target="_blank" rel="noreferrer" title="LinkedIn">in</a>
       </div>
     </div>
 
@@ -57,7 +51,7 @@
 <section id="proyectos" class="section anchor-offset">
   <h2 data-i18n="projects.title">Proyectos</h2>
   <p class="muted" data-i18n="projects.subtitle" style="margin-top:-6px;">
-    Proyectos y trabajos realizados terminados como freelancer.
+    Tarjetas con resumen + detalles (flip).
   </p>
 
   <div class="projects-grid" style="margin-top:18px;">
@@ -69,16 +63,21 @@
           <div class="card-face front">
             <div class="img">
               <img src="{{.Thumb}}" alt="{{.TitleES}}" loading="lazy">
+
+              {{if or .BannerES .BannerEN}}
+              <div class="thumb-overlay">
+                <span class="lang-es">{{.BannerES}}</span>
+                <span class="lang-en">{{.BannerEN}}</span>
+              </div>
+              {{end}}
             </div>
 
             <div class="body">
-              <!-- ✅ TÍTULO ES/EN: se muestra uno u otro según data-lang del html -->
               <p class="title">
                 <span class="lang-es">{{.TitleES}}</span>
                 <span class="lang-en">{{.TitleEN}}</span>
               </p>
 
-              <!-- ✅ DESC ES/EN -->
               <p class="desc">
                 <span class="lang-es">{{.DescES}}</span>
                 <span class="lang-en">{{.DescEN}}</span>
@@ -99,7 +98,9 @@
               </div>
             </div>
 
-            <a class="btn" href="{{.URL}}">Acceder a proyecto</a>
+            <a class="btn" href="{{.URL}}">
+              <span data-i18n="projects.access">Acceder a proyecto</span>
+            </a>
           </div>
 
         </div>
