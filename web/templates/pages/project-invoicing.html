@@ -22,22 +22,31 @@
     </div>
   </div>
 
-  {{if .Screenshots}}
+  {{if .Sections}}
   <section style="margin-top:50px;">
-    <h2 style="text-align:center; margin-bottom:18px;">Capturas del sistema</h2>
+    <h2 style="text-align:center; margin-bottom:26px;">Módulos y funcionalidades</h2>
 
-    <div style="display:flex; flex-direction:column; gap:34px; max-width:980px; margin:0 auto;">
-      {{range .Screenshots}}
-        <div style="border-radius:18px; overflow:hidden; border:1px solid var(--border); box-shadow: var(--shadow);">
-          <img src="{{.}}" alt="Screenshot del sistema" loading="lazy" style="width:100%; height:auto; display:block;">
+    <div style="display:flex; flex-direction:column; gap:44px; max-width:980px; margin:0 auto;">
+      {{range .Sections}}
+
+        <div>
+          <h3 style="text-align:center; margin:0 0 14px 0;">{{.Title}}</h3>
+
+          {{if .Image}}
+            <div style="border-radius:18px; overflow:hidden; border:1px solid var(--border); box-shadow: var(--shadow);">
+              <img src="{{.Image}}" alt="{{.Alt}}" loading="lazy" style="width:100%; height:auto; display:block;">
+            </div>
+          {{end}}
+
+          {{if .Points}}
+          <ul style="margin:14px auto 0; max-width:980px; color:var(--muted); line-height:1.7;">
+            {{range .Points}}
+              <li>{{.}}</li>
+            {{end}}
+          </ul>
+          {{end}}
         </div>
 
-        <!-- placeholder de bullets (vos después lo llenás por imagen) -->
-        <ul style="margin:0 auto; max-width:980px; color:var(--muted); line-height:1.7;">
-          <li>- Punto a destacar (1)</li>
-          <li>- Punto a destacar (2)</li>
-          <li>- Punto a destacar (3)</li>
-        </ul>
       {{end}}
     </div>
   </section>
