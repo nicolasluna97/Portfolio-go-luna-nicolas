@@ -116,7 +116,7 @@ func HomeHandler(tplDir string) http.HandlerFunc {
 				{
 					URL:       "/projects/invoicing-system",
 					Thumb:     "/static/images/projects/invoicing-system/thumb.webp",
-					DateRange: "2024 - 2025",
+					DateRange: "2025 - actualidad",
 					Tech:      []string{"Angular", "NestJS", "PostgreSQL", "Docker"},
 					TitleES:   "Sistema de Facturación (Multi-tenant)",
 					TitleEN:   "Invoicing System (Multi-tenant)",
@@ -126,7 +126,7 @@ func HomeHandler(tplDir string) http.HandlerFunc {
 				{
 					URL:       "/projects/creativistas-web",
 					Thumb:     "/static/images/projects/creativistas/creativistas-thumb.webp",
-					DateRange: "2023 - 2024",
+					DateRange: "2025 - 2026",
 					Tech:      []string{"Next.js", "React", "MongoDB", "SendGrid"},
 					TitleES:   "Creativistas Web",
 					TitleEN:   "Creativistas Web",
@@ -134,14 +134,14 @@ func HomeHandler(tplDir string) http.HandlerFunc {
 					DescEN:    "Psychological tests (Big 5) with email delivery of results.",
 				},
 				{
-					URL:       "#",
-					Thumb:     "/static/images/projects/clients-app/thumb.webp",
-					DateRange: "2023 - 2024",
-					Tech:      []string{"Angular", "NestJS", "MySQL"},
-					TitleES:   "App de Gestión de Clientes",
-					TitleEN:   "Client Management App",
-					DescES:    "CRUD de clientes, proveedores y órdenes, con validaciones y filtros (concepto).",
-					DescEN:    "CRUD for clients, suppliers and orders, with validations and filters (concept).",
+					URL:       "/projects/tienda-nube",
+					TitleES:   "Tienda Online (TiendaNube)",
+					TitleEN:   "Online Store (TiendaNube)",
+					DescES:    "E-commerce en TiendaNube: personalización del theme, configuración de catálogo/variantes y optimización del flujo de compra para autogestión.",
+					DescEN:    "TiendaNube e-commerce: theme customization, catalog/variants setup, and checkout flow optimization for client self-management.",
+					Thumb:     "/static/images/projects/tiendanube/thumb-tiendanube.webp",
+					DateRange: "2026 — Actualidad",
+					Tech:      []string{"TiendaNube", "UI/UX", "CSS", "HTML"},
 				},
 			},
 		}
@@ -184,7 +184,7 @@ func InvoicingSystemHandler(tplDir string) http.HandlerFunc {
 
 			TitleES: "Sistema de Facturación (Multi-tenant)",
 			TitleEN: "Invoicing System (Multi-tenant)",
-			DescES:  "Plataforma de facturación e inventario con roles, clientes, productos y movimientos de stock.",
+			DescES:  "Plataforma de facturación e inventario con roles, clientes, productos, movimientos de stock y estadísticas para empresas o autonomos. La página web posse actulaización de stock en tiempo real además modo oscuro y claro. Actualmente en desarrollo en beta 2.0, cuando se sumen las funcionalidades faltantes, se subirá a producción.",
 			DescEN:  "Multi-tenant invoicing and inventory platform with roles, customers, products and stock movements.",
 
 			Screenshots: []string{
@@ -314,6 +314,48 @@ func CreativistasWebHandler(tplDir string) http.HandlerFunc {
 			Screenshots: []string{
 				"/static/images/projects/creativistas/creativistas-1.webp",
 			},
+		}
+
+		w.Header().Set("Content-Type", "text/html; charset=utf-8")
+		if err := tpl.ExecuteTemplate(w, "base", data); err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+	}
+}
+
+/* ==========
+PROYECTO 3: TIENDANUBE
+========== */
+
+func TiendaNubeHandler(tplDir string) http.HandlerFunc {
+	layout := filepath.Join(tplDir, "layouts", "base.html")
+	page := filepath.Join(tplDir, "pages", "project-tiendanube.html")
+	tpl := template.Must(template.ParseFiles(layout, page))
+
+	return func(w http.ResponseWriter, r *http.Request) {
+		data := ProjectPageData{
+			Title:   "TiendaNube - Luna Nicolás",
+			Lang:    "es",
+			Role:    "Desarrollador Full Stack",
+			Name:    "Luna Nicolás Ezequiel",
+			HideNav: true,
+
+			Social: SocialLinks{
+				Github:   "https://github.com/nicolasluna97",
+				Email:    "mailto:nicolassluna1997@gmail.com",
+				Linkedin: "https://www.linkedin.com/",
+			},
+
+			Slug:      "tienda-nube",
+			HeroImage: "/static/images/projects/tiendanube/tiendanube-website.webp",
+			DateRange: "2025 - Actualidad",
+			Tech:      []string{"TiendaNube", "UI/UX", "HTML", "CSS"},
+
+			TitleES: "Tienda Online (TiendaNube)",
+			TitleEN: "Online Store (TiendaNube)",
+			DescES:  "Implementación y personalización de tienda en TiendaNube.",
+			DescEN:  "Implementation and customization of a TiendaNube store.",
 		}
 
 		w.Header().Set("Content-Type", "text/html; charset=utf-8")

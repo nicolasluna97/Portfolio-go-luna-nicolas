@@ -1,0 +1,70 @@
+{{define "content"}}
+<section class="section" style="padding-top: 90px;">
+  <a href="/#proyectos" class="muted" style="text-decoration:none;">← Volver a Proyectos</a>
+
+  <h2 style="margin-top:16px;">
+    <span class="lang-es">Tienda Online (TiendaNube)</span>
+    <span class="lang-en">Online Store (TiendaNube)</span>
+  </h2>
+
+  <p class="muted" style="max-width: 900px; line-height:1.7;">
+    <span class="lang-es">
+      Proyecto en construcción, por cuestiones de privacidad del cliente, no se mostrarán imagenes del sitioweb. 
+      Implementación de una tienda en TiendaNube: personalización del theme,
+      configuración de catálogo y variantes, y optimización del flujo de compra para que el cliente
+      gestione productos y stock sin depender del desarrollador.
+    </span>
+    <span class="lang-en">
+      Project under construction. TiendaNube store implementation: theme customization,
+      catalog/variants setup, and checkout flow optimization so the client can manage products and stock
+      without developer dependency.
+    </span>
+  </p>
+
+  <!-- ✅ CAPTURA / SCREENSHOT -->
+  <div style="margin-top: 26px; display:flex; justify-content:center;">
+    <div class="project-shot">
+      <img src="{{.HeroImage}}" alt="TiendaNube website screenshot">
+    </div>
+  </div>
+
+  <div style="margin-top: 16px; display:flex; gap:10px; flex-wrap:wrap;">
+    <span class="tech-chip">TiendaNube</span>
+    <span class="tech-chip">UI/UX</span>
+    <span class="tech-chip">Catálogo</span>
+    <span class="tech-chip">Variantes</span>
+    <span class="tech-chip">SEO</span>
+  </div>
+
+  <div class="project-notes">
+    <h3>
+      <span class="lang-es">Qué se implementó</span>
+      <span class="lang-en">What was implemented</span>
+    </h3>
+
+    <ul style="margin:14px 0 0; line-height:1.75; color: var(--muted);">
+      <li>
+        <span class="lang-es">Personalización visual del storefront (home, categorías, ficha de producto) con foco en conversión.</span>
+        <span class="lang-en">Storefront visual customization (home, categories, product page) focused on conversion.</span>
+      </li>
+      <li>
+        <span class="lang-es">Estructura de catálogo: categorías, colecciones, atributos y reglas de carga para autogestión.</span>
+        <span class="lang-en">Catalog structure: categories, collections, attributes, and upload rules for self-management.</span>
+      </li>
+      <li>
+        <span class="lang-es">Optimización del flujo comercial: envíos, medios de pago, textos informativos y SEO on-page.</span>
+        <span class="lang-en">Commercial flow optimization: shipping, payments, informational copy, and on-page SEO.</span>
+      </li>
+    </ul>
+  </div>
+<br>
+<br>
+  <div style="margin-top: 18px; display:flex; gap:12px; flex-wrap:wrap;">
+    <a class="btn" href="/#proyectos">
+      <span class="lang-es">Ver otros proyectos</span>
+      <span class="lang-en">See other projects</span>
+    </a>
+
+  </div>
+</section>
+{{end}}
