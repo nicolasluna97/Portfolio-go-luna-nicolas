@@ -1,17 +1,15 @@
 {{define "content"}}
 
-<section class="section anchor-offset" style="padding-top:40px;">
-  <a href="/" style="display:inline-flex; gap:10px; align-items:center; font-weight:900; opacity:.9; text-decoration:none;">
-    ← Volver
-  </a>
+<section class="section anchor-offset project-page">
+  <a href="/" class="project-back">← Volver</a>
 
-  <div style="text-align:center; margin-top:18px;">
-    <h1 style="margin:16px 0 10px 0; font-size:44px; letter-spacing:-1px;">
+  <div class="project-center">
+    <h1 class="project-title">
       <span class="lang-es">{{.TitleES}}</span>
       <span class="lang-en">{{.TitleEN}}</span>
     </h1>
 
-    <p class="muted" style="max-width:850px; margin:0 auto; line-height:1.7;">
+    <p class="project-desc">
       <span class="lang-es">{{.DescES}}</span>
       <span class="lang-en">{{.DescEN}}</span>
     </p>
@@ -26,130 +24,110 @@
   </div>
 
   <div class="project-notes">
-    <!-- Dejá acá tu texto cuando quieras -->
     <div class="muted" style="line-height:1.9;">
       <span class="lang-es">
 
-        <h3>Problemas técnicos y soluciones aplicadas:</h3> 
-        <h4>1) Limitación incorrecta de caracteres en inputs críticos</h4>
-            Problema:
-            <br>
-            Los campos “Nombre” y “Email” estaban limitados a 40 caracteres, lo cual afectaba especialmente al email (casos reales superan ese límite).
-            <br>
-            Resolución aplicada:
-            Se ajustó el límite del campo email a 50 caracteres manteniendo el nombre en 40, configurándolo a nivel de input (propiedad maxLength en TextField), evitando cambios mayores en lógica de validación.
-            <br>
-            <br>
-        <h4>2) Mensaje de navegación “¿Querés ver tus resultados?” en una ubicación invasiva</h4>
-            Problema:
-            <br>
-            El mensaje “¿Querés ver tus resultados?” se mostraba en la parte superior dentro del header en la ruta Big5, resultando intrusivo y rompiendo la intención de UX (se quería al final del contenido).
-            <br>
-            Resolución aplicada:
-            Se localizó el origen real del mensaje mediante búsqueda global y se identificó que estaba en components/creativistas/Header.js. Se corrigió desde el componente correcto (header/layout) en lugar de duplicar lógica en páginas, lo que permitió reubicar/condicionar el bloque sin efectos colaterales.
-            <br>
-            <br>
-        <h4>3) Error en runtime por variable inexistente: ReferenceError: big5 is not defined</h4>
-            Problema:
-            <br>
-            Al intentar mover código del header a la página pages/big5/index.js, se introdujo una referencia a big5 (y a dependencias como Link/info) que no existían en ese contexto, causando crash durante render (incluyendo render del servidor).
-            <br>
-            Resolución aplicada:
-            Se eliminó la lógica copiada fuera de contexto y se reubicó donde correspondía (Header), o se reescribió la condición de forma compatible con el tipo de componente. Esto evitó mezclar lógica propia de un componente funcional con hooks (useRouter) dentro de un componente de clase sin adaptar el acceso al router.
-            <br>
-            <br>
-        <h4>4) Confusión al levantar el proyecto: Cannot find module ... app.js</h4>    
-            Problema:
-            <br>
-            El proyecto se intentaba iniciar desde una carpeta incorrecta, lo que provocaba que Node no encontrara app.js.
-            <br>
-            Resolución aplicada:
-            Se estandarizó el flujo de arranque usando el directorio correcto (webapp/) y se ejecutó el script esperado (npm run dev), dejando el proyecto corriendo correctamente con Next.js + Express.
-            <br>
-            <br>
-        <h4>5) Migración operativa a MongoDB Atlas del cliente (multi-cuenta)</h4>
-            Problema:
-            <br>
-            El proyecto estaba apuntando a una base Mongo propia, y se necesitaba migrar/operar contra la base del cliente (Atlas) con credenciales, cluster y string de conexión correctos.
-            <br>
-            Resolución aplicada:
-            Se configuró la infraestructura mínima en MongoDB Atlas del cliente:
-            Creación de cluster y database user
-            <br>
-            Obtención del connection string mongodb+srv://...
-            <br>
-            Configuración del MONGODB_URI en .env
-            <br>
-            Verificación de conectividad con logs (✅ MongoDB conectado)
-            <br>    
-            <br>
-        <h4>6) Bloqueo por IP / Network Access en MongoDB Atlas</h4>
-            Problema:
-            <br>
-            El acceso al cluster dependía de una IP permitida. Existía confusión entre IP propia y del cliente, y se requería habilitar acceso desde desarrollo.
-            <br>
-            Resolución aplicada:
-            Se configuró Network Access (IP Access List) habilitando 0.0.0.0/0 para permitir pruebas desde cualquier IP durante desarrollo, desbloqueando la conectividad. (Quedó como decisión de hardening restringirlo en producción.)
-            <br>
-            <br>    
-        <h4>7) Integración de SendGrid en cuenta del cliente (API Key + Sender Verification)</h4>
-            Problema:
-            <br>
-            El envío de emails debía migrarse a la cuenta SendGrid del cliente. Sin API Key válida y sender verificado, los envíos fallaban o no podían garantizarse.
-            <br>
-            Resolución aplicada:
-            Se completó el setup en SendGrid:
-            Creación de SENDGRID_API_KEY funcional (SG...)
-            <br>
-            Configuración de Single Sender Verification
-            <br>
-            Pruebas reales de envío confirmando que la integración funcionaba
-            <br>
-            <br>
-        <h4>8) Problemas en compatibilidad de Drivers</h4>
-            Problema:
-            <br>
-            El proyecto tenia Drivers viejos que ya next.js no dejaba levantar el proyecto por falta de seguridad mínima
-            <br>
-            Resolución aplicada:
-            Actualización de Drivers.
-            <br>
-            <br>
-            <br>
-        <h3>Mejoras / funcionalidades agregadas</h3>
-        <h4>A) Bloque “Último resultado guardado” en Big5 (UX)</h4>
-            Se incorporó la lectura de resultados previos desde localStorage en pages/big5/index.js, mostrando:
-            Nombre, email e ID del último resultado
-            <br>
-            Acciones: “Ver resultados” / “Rehacer prueba” (limpiando localStorage)
-            <br>
-            Esto mejoró continuidad de usuario y redujo fricción para recuperar informes.
-            <br>
-            <br>
-        <h4>B) Robustez del backend de emails (Big5)</h4>
-            Se mejoró el envío de emails con:
-            Validación/sanitización de payload (Joi + validaciones extra)
-            <br>
-            Envío no bloqueante (respuesta al usuario primero; email luego)
-            <br>
-            Compatibilidad con:
-            <br>
-            Dynamic Template (SENDGRID_TEMPLATE_ID) si existe
-            <br>
-            Fallback a HTML/text si no hay template
-            <br>
-            <br>
-        <h4>C) Observabilidad y diagnóstico en ambiente dev</h4>
-            Se consolidaron logs claros para:
-            Estado de SendGrid (API Key presente/ausente)
-            <br>
-            Resultado de conexión MongoDB
-            <br>
-            Errores de SendGrid mostrando el body cuando existe
-            <br>
-            Esto facilitó pruebas con el cliente y debugging rápido.
+        <h3>Problemas técnicos y soluciones aplicadas:</h3>
 
+        <h4>1) Limitación incorrecta de caracteres en inputs críticos</h4>
+        Problema:
+        <br>
+        Los campos “Nombre” y “Email” estaban limitados a 40 caracteres, lo cual afectaba especialmente al email (casos reales superan ese límite).
+        <br>
+        Resolución aplicada:
+        Se ajustó el límite del campo email a 50 caracteres manteniendo el nombre en 40, configurándolo a nivel de input (propiedad maxLength en TextField), evitando cambios mayores en lógica de validación.
+        <br><br>
+
+        <h4>2) Mensaje de navegación “¿Querés ver tus resultados?” en una ubicación invasiva</h4>
+        Problema:
+        <br>
+        El mensaje “¿Querés ver tus resultados?” se mostraba en la parte superior dentro del header en la ruta Big5, resultando intrusivo y rompiendo la intención de UX (se quería al final del contenido).
+        <br>
+        Resolución aplicada:
+        Se localizó el origen real del mensaje mediante búsqueda global y se identificó que estaba en components/creativistas/Header.js. Se corrigió desde el componente correcto (header/layout) en lugar de duplicar lógica en páginas, lo que permitió reubicar/condicionar el bloque sin efectos colaterales.
+        <br><br>
+
+        <h4>3) Error en runtime por variable inexistente: ReferenceError: big5 is not defined</h4>
+        Problema:
+        <br>
+        Al intentar mover código del header a la página pages/big5/index.js, se introdujo una referencia a big5 (y a dependencias como Link/info) que no existían en ese contexto, causando crash durante render (incluyendo render del servidor).
+        <br>
+        Resolución aplicada:
+        Se eliminó la lógica copiada fuera de contexto y se reubicó donde correspondía (Header), o se reescribió la condición de forma compatible con el tipo de componente. Esto evitó mezclar lógica propia de un componente funcional con hooks (useRouter) dentro de un componente de clase sin adaptar el acceso al router.
+        <br><br>
+
+        <h4>4) Confusión al levantar el proyecto: Cannot find module ... app.js</h4>
+        Problema:
+        <br>
+        El proyecto se intentaba iniciar desde una carpeta incorrecta, lo que provocaba que Node no encontrara app.js.
+        <br>
+        Resolución aplicada:
+        Se estandarizó el flujo de arranque usando el directorio correcto (webapp/) y se ejecutó el script esperado (npm run dev), dejando el proyecto corriendo correctamente con Next.js + Express.
+        <br><br>
+
+        <h4>5) Migración operativa a MongoDB Atlas del cliente (multi-cuenta)</h4>
+        Problema:
+        <br>
+        El proyecto estaba apuntando a una base Mongo propia, y se necesitaba migrar/operar contra la base del cliente (Atlas) con credenciales, cluster y string de conexión correctos.
+        <br>
+        Resolución aplicada:
+        Se configuró la infraestructura mínima en MongoDB Atlas del cliente:
+        Creación de cluster y database user
+        <br>
+        Obtención del connection string mongodb+srv://...
+        <br>
+        Configuración del MONGODB_URI en .env
+        <br>
+        Verificación de conectividad con logs (✅ MongoDB conectado)
+        <br><br>
+
+        <h4>6) Bloqueo por IP / Network Access en MongoDB Atlas</h4>
+        Problema:
+        <br>
+        El acceso al cluster dependía de una IP permitida.
+        <br>
+        Resolución aplicada:
+        Se configuró Network Access (IP Access List) habilitando 0.0.0.0/0 para permitir pruebas desde cualquier IP durante desarrollo.
+        <br><br>
+
+        <h4>7) Integración de SendGrid en cuenta del cliente (API Key + Sender Verification)</h4>
+        Problema:
+        <br>
+        El envío de emails debía migrarse a la cuenta SendGrid del cliente.
+        <br>
+        Resolución aplicada:
+        Se completó el setup en SendGrid:
+        Creación de SENDGRID_API_KEY funcional (SG...)
+        <br>
+        Configuración de Single Sender Verification
+        <br>
+        Pruebas reales de envío confirmando que la integración funcionaba
+        <br><br>
+
+        <h4>8) Problemas en compatibilidad de Drivers</h4>
+        Problema:
+        <br>
+        El proyecto tenia Drivers viejos que Next.js no dejaba levantar por falta de seguridad mínima
+        <br>
+        Resolución aplicada:
+        Actualización de Drivers.
+        <br><br><br>
+
+        <h3>Mejoras / funcionalidades agregadas</h3>
+
+        <h4>A) Bloque “Último resultado guardado” en Big5 (UX)</h4>
+        Se incorporó la lectura de resultados previos desde localStorage mostrando:
+        Nombre, email e ID del último resultado.
+        <br><br>
+
+        <h4>B) Robustez del backend de emails (Big5)</h4>
+        Se mejoró el envío de emails con validaciones, fallback a HTML/text y envío no bloqueante.
+        <br><br>
+
+        <h4>C) Observabilidad y diagnóstico en ambiente dev</h4>
+        Logs claros para estado de SendGrid, conexión MongoDB y errores detallados.
       </span>
+
       <span class="lang-en">
         (Write your project description here: what it does, who it’s for, features, etc.)
       </span>

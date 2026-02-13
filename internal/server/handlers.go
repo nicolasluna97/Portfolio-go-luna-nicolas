@@ -312,7 +312,7 @@ func CreativistasWebHandler(tplDir string) http.HandlerFunc {
 			DescEN:  "Psychological tests (Big 5) with email delivery of results.",
 
 			Screenshots: []string{
-				"/static/images/projects/creativistas/creativistas-1.webp",
+				"/static/images/projects/creativistas/creativistas-2.webp",
 			},
 		}
 

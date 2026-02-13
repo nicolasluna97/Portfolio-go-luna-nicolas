@@ -11,9 +11,15 @@
         <span class="name" data-i18n="hero.name">{{.Name}}</span>
       </h1>
 
-      <p data-i18n="hero.summary">
-        Desarrollo aplicaciones web end-to-end: interfaces claras, APIs robustas y despliegues ordenados.
+      <!-- ✅ Dos párrafos (ES/EN) -->
+      <p data-i18n="hero.summary1">
+        Desarrollo aplicaciones web y sitios con interfaces claras, APIs robustas y despliegues ordenados.
         Enfocado en performance, mantenibilidad y experiencia de usuario.
+      </p>
+
+      <p data-i18n="hero.summary2" class="muted" style="margin-top:10px; max-width:720px; line-height:1.7;">
+        La pasión por la programación me llevó a ser autodidacta: aprendo rápido, me adapto a nuevas tecnologías
+        y busco mejorar continuamente mi forma de trabajar.
       </p>
 
       <div class="social">
@@ -51,14 +57,12 @@
       </div>
     {{end}}
   </div>
-
 </section>
 
 <!-- PROYECTOS -->
 <section id="proyectos" class="section anchor-offset">
   <h2 data-i18n="projects.title">Proyectos</h2>
-  <p class="muted" data-i18n="projects.subtitle" style="margin-top:-6px;">
-  </p>
+  <p class="muted" data-i18n="projects.subtitle" style="margin-top:-6px;"></p>
 
   <div class="projects-grid" style="margin-top:18px;">
     {{range .Projects}}
