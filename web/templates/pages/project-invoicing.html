@@ -1,7 +1,10 @@
 {{define "content"}}
 
 <section class="section anchor-offset project-page">
-  <a href="/#proyectos" class="project-back">← Volver</a>
+  <a href="/#proyectos" class="project-back">
+    <span class="lang-es">← Volver</span>
+    <span class="lang-en">← Back</span>
+  </a>
 
   <div class="project-center">
     <h1 class="project-title" style="font-size: calc(54px * var(--ui-scale));">
@@ -24,23 +27,38 @@
 
   {{if .Sections}}
   <section class="project-block">
-    <h2>Módulos y funcionalidades</h2>
+    <h2>
+      <span class="lang-es">Módulos y funcionalidades</span>
+      <span class="lang-en">Modules & features</span>
+    </h2>
 
     <div class="project-stack">
       {{range .Sections}}
-        <div>
-          <h3 style="text-align:center; margin:0 0 14px 0;">{{.Title}}</h3>
+        <div class="project-section">
+          <h3>
+            <span class="lang-es">{{.TitleES}}</span>
+            <span class="lang-en">{{.TitleEN}}</span>
+          </h3>
 
           {{if .Image}}
-            <div style="border-radius:18px; overflow:hidden; border:1px solid var(--border); box-shadow: var(--shadow);">
-              <img src="{{.Image}}" alt="{{.Alt}}" loading="lazy" style="width:100%; height:auto; display:block;">
+            <div class="project-image-wrap">
+              <img
+                src="{{.Image}}"
+                loading="lazy"
+                data-alt-es="{{.AltES}}"
+                data-alt-en="{{.AltEN}}"
+                alt="{{.AltES}}"
+              >
             </div>
           {{end}}
 
           {{if .Points}}
-          <ul style="margin:14px auto 0; max-width:980px; color:var(--muted); line-height:1.7;">
+          <ul class="project-points">
             {{range .Points}}
-              <li>{{.}}</li>
+              <li>
+                <span class="lang-es">{{.ES}}</span>
+                <span class="lang-en">{{.EN}}</span>
+              </li>
             {{end}}
           </ul>
           {{end}}

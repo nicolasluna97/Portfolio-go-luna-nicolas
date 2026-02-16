@@ -11,15 +11,16 @@
         <span class="name" data-i18n="hero.name">{{.Name}}</span>
       </h1>
 
-      <!-- ✅ Dos párrafos (ES/EN) -->
-      <p data-i18n="hero.summary1">
-        Desarrollo aplicaciones web y sitios con interfaces claras, APIs robustas y despliegues ordenados.
+      <!-- Párrafo 1 -->
+      <p class="muted" data-i18n="hero.summary">
+        Desarrollo aplicaciones y páginas web, construyendo interfaces claras, APIs robustas y despliegues ordenados.
         Enfocado en performance, mantenibilidad y experiencia de usuario.
       </p>
 
-      <p data-i18n="hero.summary2" class="muted" style="margin-top:10px; max-width:720px; line-height:1.7;">
-        La pasión por la programación me llevó a ser autodidacta: aprendo rápido, me adapto a nuevas tecnologías
-        y busco mejorar continuamente mi forma de trabajar.
+      <!-- Párrafo 2 -->
+      <p class="muted" data-i18n="hero.summary2">
+        La pasión por la programación me llevó a ser autodidacta: aprendo con rapidez cualquier tecnología relacionada
+        con desarrollo web y busco mejorar continuamente mi forma de trabajar.
       </p>
 
       <div class="social">
@@ -27,7 +28,8 @@
           <img class="social-icon" src="/static/icons/github.svg" alt="GitHub">
         </a>
 
-        <a class="icon-btn" href="{{.Social.Email}}" title="Email">✉️</a>
+        <!-- ✅ Copiar email -->
+        <a class="icon-btn" href="#" data-copy-email title="Copiar email">✉️</a>
 
         <a class="icon-btn" href="{{.Social.Linkedin}}" target="_blank" rel="noreferrer" title="LinkedIn">
           <img class="social-icon" src="/static/icons/linkedin.svg" alt="LinkedIn">
@@ -62,7 +64,9 @@
 <!-- PROYECTOS -->
 <section id="proyectos" class="section anchor-offset">
   <h2 data-i18n="projects.title">Proyectos</h2>
-  <p class="muted" data-i18n="projects.subtitle" style="margin-top:-6px;"></p>
+
+  <!-- ✅ Oculto por CSS y además i18n vacío -->
+  <p class="muted projects-subtitle" data-i18n="projects.subtitle"></p>
 
   <div class="projects-grid" style="margin-top:18px;">
     {{range .Projects}}
@@ -90,9 +94,10 @@
 
           <!-- BACK -->
           <div class="card-face back">
-            <div>
+            <div class="back-top">
               <span class="badge" data-i18n="projects.freelance">Freelancer</span>
-              <div class="muted" style="margin-top:10px; font-weight:900;">{{.DateRange}}</div>
+
+              <div class="muted back-date">{{.DateRange}}</div>
 
               <div class="tech">
                 {{range .Tech}}
@@ -115,13 +120,17 @@
 <!-- CONTACTO -->
 <section id="contacto" class="section anchor-offset">
   <h2 data-i18n="contact.title">Contacto</h2>
-  <p class="muted" data-i18n="contact.subtitle" style="margin-top:-6px;">
+
+  <p class="muted contact-subtitle" data-i18n="contact.subtitle">
     Si te interesa trabajar conmigo, estos son mis canales:
   </p>
 
   <div class="contact" style="margin-top:18px;">
     <a class="big" href="{{.Social.Github}}" target="_blank" rel="noreferrer">GitHub</a>
-    <a class="big" href="{{.Social.Email}}">Email</a>
+
+    <!-- ✅ Copiar email -->
+    <a class="big" href="#" data-copy-email>Email</a>
+
     <a class="big" href="{{.Social.Linkedin}}" target="_blank" rel="noreferrer">LinkedIn</a>
   </div>
 </section>
