@@ -1,7 +1,10 @@
 {{define "content"}}
 
 <section class="section anchor-offset project-page">
-  <a href="/" class="project-back">← Volver</a>
+  <a href="/#proyectos" class="project-back">
+    <span class="lang-es">← Volver</span>
+    <span class="lang-en">← Back</span>
+  </a>
 
   <div class="project-center">
     <h1 class="project-title">
@@ -13,20 +16,29 @@
       <span class="lang-es">{{.DescES}}</span>
       <span class="lang-en">{{.DescEN}}</span>
     </p>
+
+    {{/* Si querés también mostrar badges/tech como en Invoicing, lo agregamos después */}}
   </div>
 
   <div style="margin-top:34px; display:flex; justify-content:center;">
     {{if .Screenshots}}
       <div class="project-shot">
-        <img src="{{index .Screenshots 0}}" alt="Screenshot" loading="lazy">
+        <img
+          src="{{index .Screenshots 0}}"
+          alt="Screenshot"
+          data-alt-es="Captura del proyecto"
+          data-alt-en="Project screenshot"
+          loading="lazy"
+        >
       </div>
     {{end}}
   </div>
 
   <div class="project-notes">
     <div class="muted" style="line-height:1.9;">
-      <span class="lang-es">
 
+      <!-- ES -->
+      <span class="lang-es">
         <h3>Problemas técnicos y soluciones aplicadas:</h3>
 
         <h4>1) Limitación incorrecta de caracteres en inputs críticos</h4>
@@ -128,14 +140,117 @@
         Logs claros para estado de SendGrid, conexión MongoDB y errores detallados.
       </span>
 
+      <!-- EN -->
       <span class="lang-en">
-        (Write your project description here: what it does, who it’s for, features, etc.)
+        <h3>Technical issues and applied solutions:</h3>
+
+        <h4>1) Incorrect character limit in critical inputs</h4>
+        Issue:
+        <br>
+        The “Name” and “Email” fields were limited to 40 characters, which especially impacted emails (real-world emails can exceed that limit).
+        <br>
+        Applied fix:
+        The email limit was increased to 50 characters while keeping the name at 40, configuring it directly at the input level (TextField maxLength) to avoid larger changes in the validation logic.
+        <br><br>
+
+        <h4>2) “Want to see your results?” message displayed in an intrusive location</h4>
+        Issue:
+        <br>
+        The message appeared at the top inside the header on the Big5 route, becoming intrusive and breaking the intended UX (it was meant to appear at the end of the content).
+        <br>
+        Applied fix:
+        A global search was used to locate the real source of the message, identifying it in components/creativistas/Header.js. The change was implemented in the correct component (header/layout) instead of duplicating logic in pages, allowing the block to be repositioned/conditioned without side effects.
+        <br><br>
+
+        <h4>3) Runtime crash due to missing variable: ReferenceError: big5 is not defined</h4>
+        Issue:
+        <br>
+        While moving code from the header to pages/big5/index.js, a reference to “big5” (and dependencies like Link/info) was introduced where it didn’t exist, causing a crash during render (including server-side render).
+        <br>
+        Applied fix:
+        The out-of-context copied logic was removed and placed back where it belongs (Header), or rewritten in a compatible way for the component type. This prevented mixing functional-component logic with hooks (useRouter) inside a class component without adapting router access.
+        <br><br>
+
+        <h4>4) Startup confusion: Cannot find module ... app.js</h4>
+        Issue:
+        <br>
+        The project was started from the wrong directory, causing Node to fail to locate app.js.
+        <br>
+        Applied fix:
+        The startup flow was standardized using the correct directory (webapp/) and the expected script (npm run dev), running the project properly with Next.js + Express.
+        <br><br>
+
+        <h4>5) Operational migration to the client’s MongoDB Atlas (multi-account)</h4>
+        Issue:
+        <br>
+        The project was pointing to a personal Mongo database and needed to run against the client’s Atlas database with the correct credentials, cluster, and connection string.
+        <br>
+        Applied fix:
+        Minimal infrastructure was configured on the client’s MongoDB Atlas:
+        cluster and database user creation,
+        <br>
+        retrieval of the mongodb+srv:// connection string,
+        <br>
+        MONGODB_URI setup in .env,
+        <br>
+        connectivity verification via logs (✅ MongoDB connected).
+        <br><br>
+
+        <h4>6) IP / Network Access blocking in MongoDB Atlas</h4>
+        Issue:
+        <br>
+        Cluster access depended on an allowed IP address.
+        <br>
+        Applied fix:
+        Network Access (IP Access List) was configured allowing 0.0.0.0/0 to enable testing from any IP during development.
+        <br><br>
+
+        <h4>7) SendGrid integration on the client’s account (API Key + Sender Verification)</h4>
+        Issue:
+        <br>
+        Email sending had to be migrated to the client’s SendGrid account.
+        <br>
+        Applied fix:
+        SendGrid setup was completed:
+        creation of a working SENDGRID_API_KEY (SG...),
+        <br>
+        Single Sender Verification configuration,
+        <br>
+        real delivery tests confirming the integration worked.
+        <br><br>
+
+        <h4>8) Driver compatibility issues</h4>
+        Issue:
+        <br>
+        The project used outdated drivers that prevented Next.js from starting due to minimum security requirements.
+        <br>
+        Applied fix:
+        Dependencies/drivers were updated.
+        <br><br><br>
+
+        <h3>Improvements / added features</h3>
+
+        <h4>A) “Last saved result” block in Big5 (UX)</h4>
+        Previous results were read from localStorage and displayed:
+        name, email, and last result ID.
+        <br><br>
+
+        <h4>B) Stronger email backend (Big5)</h4>
+        Email sending was improved with validations, HTML/text fallback, and non-blocking sending.
+        <br><br>
+
+        <h4>C) Observability and diagnostics in dev environment</h4>
+        Clear logs for SendGrid status, MongoDB connection, and detailed error reporting.
       </span>
+
     </div>
   </div>
 
   <div style="margin-top:26px; display:flex; justify-content:center;">
-    <a class="btn" href="/" style="max-width:320px;">Volver al Home</a>
+    <a class="btn" href="/#proyectos" style="max-width:320px;">
+      <span class="lang-es">Volver al Home</span>
+      <span class="lang-en">Back to Home</span>
+    </a>
   </div>
 </section>
 
