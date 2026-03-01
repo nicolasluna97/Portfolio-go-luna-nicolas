@@ -113,11 +113,17 @@ func HomeHandler(tplDir string) http.HandlerFunc {
 				{Key: "postgresql", Label: "PostgreSQL"},
 				{Key: "docker", Label: "Docker"},
 				{Key: "github", Label: "GitHub"},
+				{Key: "postman", Label: "Postman"},
 			},
 			StackOther: []StackItem{
 				{Key: "go", Label: "Go"},
 				{Key: "javascript", Label: "JavaScript"},
 				{Key: "mysql", Label: "MySQL"},
+				{Key: "claude", Label: "Claude AI"},
+				{Key: "html5", Label: "HTML5"},
+				{Key: "css3", Label: "CSS3"},
+				{Key: "VirtualBox", Label: "VirtualBox"},
+				{Key: "hostinger", Label: "Hostinger"},
 			},
 
 			Projects: []ProjectCard{

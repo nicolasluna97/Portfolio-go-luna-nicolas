@@ -63,7 +63,8 @@
       </div>
     {{end}}
   </div>
-
+  <br>
+  <br>
     <h3 class="stack-subtitle" style="margin-top:26px;" data-i18n="stack.other">Otras tecnologías que manejo</h3>
     <div class="stack-grid">
       {{range .StackOther}}
@@ -76,19 +77,6 @@
       {{end}}
     </div>
   </section>
-
-  <h3 class="stack-subtitle" style="margin-top:26px;" data-i18n="stack.other">Otras tecnologías que manejo</h3>
-  <div class="stack-grid">
-    {{range .StackOther}}
-      <div class="stack-item">
-        <div class="stack-logo">
-          <img src="/static/icons/{{.Key}}.svg" alt="{{.Label}}">
-        </div>
-        <div class="stack-name">{{.Label}}</div>
-      </div>
-    {{end}}
-  </div>
-</section>
 
 <!-- PROYECTOS -->
 <section id="proyectos" class="section anchor-offset">
