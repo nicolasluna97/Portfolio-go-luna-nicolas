@@ -40,12 +40,12 @@ type PageData struct {
 	Name  string
 
 	Social SocialLinks
-	Stack  []StackItem
+
+	StackPrimary []StackItem
+	StackOther   []StackItem
 
 	Projects []ProjectCard
-
-	// ✅ FIX CLAVE: base.html usa .HideNav
-	HideNav bool
+	HideNav  bool
 }
 
 /* Sección individual del proyecto (para proyecto 1) */
@@ -107,18 +107,19 @@ func HomeHandler(tplDir string) http.HandlerFunc {
 				Email:    "mailto:nicolassluna1997@gmail.com",
 				Linkedin: "https://www.linkedin.com/",
 			},
-			Stack: []StackItem{
-				{Key: "html5", Label: "HTML"},
-				{Key: "css3", Label: "CSS"},
-				{Key: "javascript", Label: "JavaScript"},
+			StackPrimary: []StackItem{
 				{Key: "angular", Label: "Angular"},
 				{Key: "nestjs", Label: "NestJS"},
-				{Key: "go", Label: "Go"},
-				{Key: "github", Label: "GitHub"},
-				{Key: "mysql", Label: "MySQL"},
 				{Key: "postgresql", Label: "PostgreSQL"},
 				{Key: "docker", Label: "Docker"},
+				{Key: "github", Label: "GitHub"},
 			},
+			StackOther: []StackItem{
+				{Key: "go", Label: "Go"},
+				{Key: "javascript", Label: "JavaScript"},
+				{Key: "mysql", Label: "MySQL"},
+			},
+
 			Projects: []ProjectCard{
 				{
 					URL:       "/projects/invoicing-system",

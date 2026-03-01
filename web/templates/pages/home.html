@@ -38,9 +38,12 @@
     </div>
 
     <!-- Columna derecha -->
-    <div>
-      <div class="avatar">IMG</div>
-    </div>
+    <!-- Columna derecha -->
+      <div>
+        <div class="avatar">
+          <img src="/static/images/profile/Camisa-celeste6.webp" alt="Luna Nicolás">
+        </div>
+      </div>
 
   </div>
 </section>
@@ -49,8 +52,34 @@
 <section id="stack" class="section anchor-offset">
   <h2 data-i18n="stack.title">Stack</h2>
 
+  <h3 class="stack-subtitle" data-i18n="stack.primary">Stack principal</h3>
   <div class="stack-grid">
-    {{range .Stack}}
+    {{range .StackPrimary}}
+      <div class="stack-item">
+        <div class="stack-logo">
+          <img src="/static/icons/{{.Key}}.svg" alt="{{.Label}}">
+        </div>
+        <div class="stack-name">{{.Label}}</div>
+      </div>
+    {{end}}
+  </div>
+
+    <h3 class="stack-subtitle" style="margin-top:26px;" data-i18n="stack.other">Otras tecnologías que manejo</h3>
+    <div class="stack-grid">
+      {{range .StackOther}}
+        <div class="stack-item">
+          <div class="stack-logo">
+            <img src="/static/icons/{{.Key}}.svg" alt="{{.Label}}">
+          </div>
+          <div class="stack-name">{{.Label}}</div>
+        </div>
+      {{end}}
+    </div>
+  </section>
+
+  <h3 class="stack-subtitle" style="margin-top:26px;" data-i18n="stack.other">Otras tecnologías que manejo</h3>
+  <div class="stack-grid">
+    {{range .StackOther}}
       <div class="stack-item">
         <div class="stack-logo">
           <img src="/static/icons/{{.Key}}.svg" alt="{{.Label}}">
