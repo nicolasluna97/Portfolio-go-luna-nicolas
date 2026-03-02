@@ -31,16 +31,23 @@
         <!-- ✅ Copiar email -->
         <a class="icon-btn" href="#" data-copy-email title="Copiar email">✉️</a>
 
-        <a class="icon-btn" href="{{.Social.Linkedin}}" target="_blank" rel="noreferrer" title="LinkedIn">
+        <!--<a class="icon-btn" href="{{.Social.Linkedin}}" target="_blank" rel="noreferrer" title="LinkedIn">
           <img class="social-icon" src="/static/icons/linkedin.svg" alt="LinkedIn">
-        </a>
+        </a>-->
+          <a class="icon-btn-wide"
+            href="/static/cv/CV_Luna_Nicolas_Ezequiel_developer.pdf"
+            download
+            title="Download CV">
+            📄 <span>Download CV</span>
+          </a>
       </div>
     </div>
 
     <!-- Columna derecha -->
     <!-- Columna derecha -->
-      <div>
-        <div class="avatar">
+        <div>
+          <div class="avatar">
+          <span class="brush"></span>
           <img src="/static/images/profile/Camisa-celeste6.webp" alt="Luna Nicolás">
         </div>
       </div>
@@ -50,7 +57,9 @@
 
 <!-- STACK -->
 <section id="stack" class="section anchor-offset">
-  <h2 data-i18n="stack.title">Stack</h2>
+    <div class="section-title">
+      <h2 data-i18n="stack.title">Stack</h2>
+    </div>
 
   <h3 class="stack-subtitle" data-i18n="stack.primary">Stack principal</h3>
   <div class="stack-grid">
@@ -80,7 +89,9 @@
 
 <!-- PROYECTOS -->
 <section id="proyectos" class="section anchor-offset">
-  <h2 data-i18n="projects.title">Proyectos</h2>
+    <div class="section-title">
+      <h2 data-i18n="projects.title">Proyectos</h2>
+    </div>
 
   <!-- ✅ Oculto por CSS y además i18n vacío -->
   <p class="muted projects-subtitle" data-i18n="projects.subtitle"></p>
@@ -136,7 +147,9 @@
 
 <!-- CONTACTO -->
 <section id="contacto" class="section anchor-offset">
-  <h2 data-i18n="contact.title">Contacto</h2>
+  <div class="section-title">
+    <h2 data-i18n="contact.title">Contacto</h2>
+  </div>
 
   <p class="muted contact-subtitle" data-i18n="contact.subtitle">
     Si te interesa trabajar conmigo, estos son mis canales:
@@ -148,7 +161,7 @@
     <!-- ✅ Copiar email -->
     <a class="big" href="#" data-copy-email>Email</a>
 
-    <a class="big" href="{{.Social.Linkedin}}" target="_blank" rel="noreferrer">LinkedIn</a>
+    <!--<a class="big" href="{{.Social.Linkedin}}" target="_blank" rel="noreferrer">LinkedIn</a> -->
   </div>
 </section>
 
