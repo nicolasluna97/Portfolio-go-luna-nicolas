@@ -105,7 +105,7 @@ func HomeHandler(tplDir string) http.HandlerFunc {
 			Social: SocialLinks{
 				Github:   "https://github.com/nicolasluna97",
 				Email:    "mailto:nicolassluna1997@gmail.com",
-				Linkedin: "https://www.linkedin.com/",
+				Linkedin: "https://www.linkedin.com/in/nicolas-lunaok/",
 			},
 			StackPrimary: []StackItem{
 				{Key: "angular", Label: "Angular"},
@@ -188,7 +188,7 @@ func InvoicingSystemHandler(tplDir string) http.HandlerFunc {
 			Social: SocialLinks{
 				Github:   "https://github.com/nicolasluna97",
 				Email:    "mailto:nicolassluna1997@gmail.com",
-				Linkedin: "https://www.linkedin.com/",
+				Linkedin: "https://www.linkedin.com/in/nicolas-lunaok/",
 			},
 
 			Slug:      "invoicing-system",
@@ -326,7 +326,7 @@ func CreativistasWebHandler(tplDir string) http.HandlerFunc {
 			Social: SocialLinks{
 				Github:   "https://github.com/nicolasluna97",
 				Email:    "mailto:nicolassluna1997@gmail.com",
-				Linkedin: "https://www.linkedin.com/",
+				Linkedin: "https://www.linkedin.com/in/nicolas-lunaok/",
 			},
 
 			Slug:      "creativistas",
@@ -372,7 +372,7 @@ func TiendaNubeHandler(tplDir string) http.HandlerFunc {
 			Social: SocialLinks{
 				Github:   "https://github.com/nicolasluna97",
 				Email:    "mailto:nicolassluna1997@gmail.com",
-				Linkedin: "https://www.linkedin.com/",
+				Linkedin: "https://www.linkedin.com/in/nicolas-lunaok/",
 			},
 
 			Slug:      "tienda-nube",
