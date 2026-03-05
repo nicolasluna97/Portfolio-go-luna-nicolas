@@ -130,7 +130,7 @@ func HomeHandler(tplDir string) http.HandlerFunc {
 				{
 					URL:       "/projects/invoicing-system",
 					Thumb:     "/static/images/projects/invoicing-system/thumb.webp",
-					DateRange: "2025 - 2026",
+					DateRange: "",
 					Tech:      []string{"Angular", "NestJS", "PostgreSQL", "Docker"},
 					TitleES:   "Sistema de Facturación (Multi-tenant)",
 					TitleEN:   "Invoicing System (Multi-tenant)",
@@ -140,7 +140,7 @@ func HomeHandler(tplDir string) http.HandlerFunc {
 				{
 					URL:       "/projects/creativistas-web",
 					Thumb:     "/static/images/projects/creativistas/creativistas-thumb.webp",
-					DateRange: "2025",
+					DateRange: "",
 					Tech:      []string{"Next.js", "React", "MongoDB", "SendGrid"},
 					TitleES:   "Creativistas Web",
 					TitleEN:   "Creativistas Web",
@@ -154,7 +154,7 @@ func HomeHandler(tplDir string) http.HandlerFunc {
 					DescES:    "E-commerce en TiendaNube: personalización del theme, configuración de catálogo/variantes y optimización del flujo de compra para autogestión.",
 					DescEN:    "TiendaNube e-commerce: theme customization, catalog/variants setup, and checkout flow optimization for client self-management.",
 					Thumb:     "/static/images/projects/tiendanube/thumb-tiendanube.webp",
-					DateRange: "2025 — 2026",
+					DateRange: "",
 					Tech:      []string{"TiendaNube", "UI/UX", "CSS", "HTML"},
 				},
 			},
@@ -193,7 +193,7 @@ func InvoicingSystemHandler(tplDir string) http.HandlerFunc {
 
 			Slug:      "invoicing-system",
 			HeroImage: "/static/images/projects/invoicing-system/thumb.webp",
-			DateRange: "2025 - 2026",
+			DateRange: "",
 			Tech:      []string{"Angular", "NestJS", "PostgreSQL", "Docker"},
 
 			TitleES: "Sistema de Facturación (Multi-tenant)",
@@ -331,7 +331,7 @@ func CreativistasWebHandler(tplDir string) http.HandlerFunc {
 
 			Slug:      "creativistas",
 			HeroImage: "/static/images/projects/creativistas/creativistas-thumb.webp",
-			DateRange: "2025",
+			DateRange: "",
 			Tech:      []string{"Next.js", "React", "MongoDB", "SendGrid"},
 
 			TitleES: "Creativistas Web",
@@ -377,7 +377,7 @@ func TiendaNubeHandler(tplDir string) http.HandlerFunc {
 
 			Slug:      "tienda-nube",
 			HeroImage: "/static/images/projects/tiendanube/tiendanube-website.webp",
-			DateRange: "2025 - 2026",
+			DateRange: "",
 			Tech:      []string{"TiendaNube", "UI/UX", "HTML", "CSS"},
 
 			TitleES: "Tienda Online (TiendaNube)",

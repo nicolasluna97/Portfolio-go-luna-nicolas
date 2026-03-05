@@ -219,7 +219,7 @@ func homeData() PageData {
 		Social: SocialLinks{
 			Github:   "https://github.com/nicolasluna97",
 			Email:    "mailto:nicolassluna1997@gmail.com",
-			Linkedin: "https://www.linkedin.com/",
+			Linkedin: "https://www.linkedin.com/in/nicolas-lunaok/",
 		},
 		StackPrimary: []StackItem{
 			{Key: "angular", Label: "Angular"},
@@ -243,7 +243,7 @@ func homeData() PageData {
 			{
 				URL:       "/projects/invoicing-system",
 				Thumb:     "/static/images/projects/invoicing-system/thumb.webp",
-				DateRange: "2025 - 2026",
+				DateRange: "",
 				Tech:      []string{"Angular", "NestJS", "PostgreSQL", "Docker"},
 				TitleES:   "Sistema de Facturación (Multi-tenant)",
 				TitleEN:   "Invoicing System (Multi-tenant)",
@@ -253,7 +253,7 @@ func homeData() PageData {
 			{
 				URL:       "/projects/creativistas-web",
 				Thumb:     "/static/images/projects/creativistas/creativistas-thumb.webp",
-				DateRange: "2025",
+				DateRange: "",
 				Tech:      []string{"Next.js", "React", "MongoDB", "SendGrid"},
 				TitleES:   "Creativistas Web",
 				TitleEN:   "Creativistas Web",
@@ -263,7 +263,7 @@ func homeData() PageData {
 			{
 				URL:       "/projects/tienda-nube",
 				Thumb:     "/static/images/projects/tiendanube/thumb-tiendanube.webp",
-				DateRange: "2025 — 2026",
+				DateRange: "",
 				Tech:      []string{"TiendaNube", "UI/UX", "CSS", "HTML"},
 				TitleES:   "Tienda Online (TiendaNube)",
 				TitleEN:   "Online Store (TiendaNube)",
@@ -284,11 +284,11 @@ func projectInvoicingData() ProjectPageData {
 		Social: SocialLinks{
 			Github:   "https://github.com/nicolasluna97",
 			Email:    "mailto:nicolassluna1997@gmail.com",
-			Linkedin: "https://www.linkedin.com/",
+			Linkedin: "https://www.linkedin.com/in/nicolas-lunaok/",
 		},
 		Slug:      "invoicing-system",
 		HeroImage: "/static/images/projects/invoicing-system/thumb.webp",
-		DateRange: "2025 - 2026",
+		DateRange: "",
 		Tech:      []string{"Angular", "NestJS", "PostgreSQL", "Docker"},
 		TitleES:   "Sistema de Facturación (Multi-tenant)",
 		TitleEN:   "Invoicing System (Multi-tenant)",
@@ -375,11 +375,11 @@ func projectCreativistasData() ProjectPageData {
 		Social: SocialLinks{
 			Github:   "https://github.com/nicolasluna97",
 			Email:    "mailto:nicolassluna1997@gmail.com",
-			Linkedin: "https://www.linkedin.com/",
+			Linkedin: "https://www.linkedin.com/in/nicolas-lunaok/",
 		},
 		Slug:      "creativistas",
 		HeroImage: "/static/images/projects/creativistas/creativistas-thumb.webp",
-		DateRange: "2025",
+		DateRange: "",
 		Tech:      []string{"Next.js", "React", "MongoDB", "SendGrid"},
 		TitleES:   "Creativistas Web",
 		TitleEN:   "Creativistas Web",
@@ -401,11 +401,11 @@ func projectTiendaNubeData() ProjectPageData {
 		Social: SocialLinks{
 			Github:   "https://github.com/nicolasluna97",
 			Email:    "mailto:nicolassluna1997@gmail.com",
-			Linkedin: "https://www.linkedin.com/",
+			Linkedin: "https://www.linkedin.com/in/nicolas-lunaok/",
 		},
 		Slug:      "tienda-nube",
 		HeroImage: "/static/images/projects/tiendanube/tiendanube-website.webp",
-		DateRange: "2025 - 2026",
+		DateRange: "",
 		Tech:      []string{"TiendaNube", "UI/UX", "HTML", "CSS"},
 		TitleES:   "Tienda Online (TiendaNube)",
 		TitleEN:   "Online Store (TiendaNube)",
