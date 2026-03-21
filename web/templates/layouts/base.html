@@ -181,15 +181,19 @@ html[data-theme="light"] .nav.scrolled{ background: rgba(245,246,248,.45); }
    SWITCHES
    ======================= */
 .switch{
-  display:flex; align-items:center; gap: calc(10px * var(--ui-scale));
+  display:flex;
+  align-items:center;
+  gap: calc(10px * var(--ui-scale));
   user-select:none;
 }
+
 .switch-label{
   font-size: calc(12px * var(--ui-scale));
   opacity: .85;
   font-weight: 700;
   letter-spacing: .2px;
 }
+
 .toggle{
   position: relative;
   width: calc(70px * var(--ui-scale));
@@ -199,81 +203,116 @@ html[data-theme="light"] .nav.scrolled{ background: rgba(245,246,248,.45); }
   background: var(--bg2);
   box-shadow: var(--shadow);
   cursor: pointer;
+  overflow: hidden;
 }
 
 /* bolita */
 .knob{
   position:absolute;
-  top: calc(3px * var(--ui-scale));
+  top: 50%;
   left: calc(3px * var(--ui-scale));
   width: calc(22px * var(--ui-scale));
   height: calc(22px * var(--ui-scale));
   border-radius: 999px;
-  transition: transform .22s ease;
+  transform: translateY(-50%);
+  transition: left .22s ease, background .22s ease;
   z-index: 1;
 }
 
-/* textos/íconos siempre arriba de la bolita */
-.toggle .txt-left,
-.toggle .txt-right,
+.toggle[data-pos="right"] .knob{
+  left: calc(45px * var(--ui-scale));
+}
+
+/* elementos visibles por encima */
 .toggle .icon-left,
-.toggle .icon-right{
-  z-index: 2;
+.toggle .icon-right,
+.toggle .txt-left,
+.toggle .txt-right{
   position:absolute;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translate(-50%, -50%);
   pointer-events:none;
+  z-index: 2;
+  transition: color .22s ease, opacity .22s ease;
 }
 
-/* posiciones */
-.toggle[data-pos="right"] .knob{ transform: translateX(calc(40px * var(--ui-scale))); }
+/* centros exactos de cada mitad */
+.toggle .icon-left,
+.toggle .txt-left{
+  left: calc(14px * var(--ui-scale));
+}
 
-.toggle .icon-left, .toggle .icon-right{
+.toggle .icon-right,
+.toggle .txt-right{
+  left: calc(56px * var(--ui-scale));
+}
+
+/* íconos tema */
+.toggle .icon-left,
+.toggle .icon-right{
   font-size: calc(13px * var(--ui-scale));
+  line-height: 1;
   opacity: .95;
 }
-.toggle .icon-left{ left: calc(9px * var(--ui-scale)); }
-.toggle .icon-right{ right: calc(9px * var(--ui-scale)); }
 
-.toggle .txt-left, .toggle .txt-right{
+/* textos idioma */
+.toggle .txt-left,
+.toggle .txt-right{
   font-size: calc(12px * var(--ui-scale));
+  line-height: 1;
   font-weight: 900;
-  opacity: .55; /* inactivo */
+  opacity: .55;
 }
-.toggle .txt-left{ left: calc(8px * var(--ui-scale)); }
-.toggle .txt-right{ right: calc(8px * var(--ui-scale)); }
 
-/* color INACTIVO (según tema) */
-html[data-theme="dark"]  .toggle .txt-left,
-html[data-theme="dark"]  .toggle .txt-right{ color: rgba(255,255,255,.75); }
+/* color inactivo */
+html[data-theme="dark"] .toggle .txt-left,
+html[data-theme="dark"] .toggle .txt-right{
+  color: rgba(255,255,255,.75);
+}
 
 html[data-theme="light"] .toggle .txt-left,
-html[data-theme="light"] .toggle .txt-right{ color: rgba(0,0,0,.65); }
+html[data-theme="light"] .toggle .txt-right{
+  color: rgba(0,0,0,.65);
+}
 
-/* el activo sube opacidad */
-.toggle[data-pos="left"]  .txt-left{ opacity: 1; }
+/* activo */
+.toggle[data-pos="left"] .txt-left{ opacity: 1; }
 .toggle[data-pos="right"] .txt-right{ opacity: 1; }
 
-/* ====== COLOR DE LA BOLITA SEGÚN TEMA (como pediste) ====== */
-html[data-theme="dark"]  .toggle .knob { background: #fff; }
-html[data-theme="light"] .toggle .knob { background: #000; }
+/* bolita según tema */
+html[data-theme="dark"] .toggle .knob{
+  background: #fff;
+}
 
+html[data-theme="light"] .toggle .knob{
+  background: #000;
+}
 
-html[data-theme="dark"] #langToggle[data-pos="left"]  .txt-left,
+/* idioma: texto dentro de la bolita */
+html[data-theme="dark"] #langToggle[data-pos="left"] .txt-left,
 html[data-theme="dark"] #langToggle[data-pos="right"] .txt-right{
-  color: #000;           /* texto negro sobre bolita blanca */
+  color: #000;
   opacity: 1;
   text-shadow: none;
 }
 
-html[data-theme="light"] #langToggle[data-pos="left"]  .txt-left,
+html[data-theme="light"] #langToggle[data-pos="left"] .txt-left,
 html[data-theme="light"] #langToggle[data-pos="right"] .txt-right{
-  color: #fff;           /* texto blanco sobre bolita negra */
+  color: #fff;
   opacity: 1;
   text-shadow: none;
 }
 
-/* (Tema) lo podés dejar como está: íconos se distinguen por el fondo/contraste */
+/* tema: ícono dentro de la bolita */
+html[data-theme="dark"] #themeToggle[data-pos="left"] .icon-left,
+html[data-theme="dark"] #themeToggle[data-pos="right"] .icon-right{
+  color: #000;
+}
+
+html[data-theme="light"] #themeToggle[data-pos="left"] .icon-left,
+html[data-theme="light"] #themeToggle[data-pos="right"] .icon-right{
+  color: #fff;
+}
 
 /* HERO */
 /* ✅ Más aire entre navbar y hero */
@@ -284,10 +323,6 @@ html[data-theme="light"] #langToggle[data-pos="right"] .txt-right{
   grid-template-columns: 1.3fr .7fr;
   gap: calc(26px * var(--ui-scale));
   align-items:center;
-}
-@media (max-width: 900px){
-  .hero-grid{ grid-template-columns: 1fr; }
-  .nav-center{ display:none; }
 }
 
 .hero h1{
@@ -790,6 +825,280 @@ html[data-theme="light"] .toast{
   font-weight: 900;
   opacity: .92;
   letter-spacing: .2px;
+}
+
+body{
+  overflow-x: hidden;
+}
+
+.container{
+  width: 100%;
+}
+
+/* =========================
+   MOBILE / TABLET
+   ========================= */
+@media (max-width: 900px){
+  .nav-center{
+    display:none;
+  }
+
+  .nav-inner{
+    height: auto;
+    min-height: calc(62px * var(--ui-scale));
+    padding: 10px 0;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .nav-left{
+    font-size: 14px;
+    line-height: 1.2;
+    flex: 1;
+    max-width: 130px;
+  }
+
+  .nav-right{
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    flex: 1;
+  }
+
+  .switch{
+    gap: 6px;
+  }
+
+  .switch-label{
+    font-size: 11px;
+  }
+
+ .toggle{
+  width: 64px;
+  height: 28px;
+}
+
+.toggle[data-pos="right"] .knob{
+  left: 39px;
+}
+
+  .hero{
+    padding-top: 110px;
+  }
+
+  .hero-grid{
+    grid-template-columns: 1fr;
+    gap: 18px;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .hero-grid > div:first-child{
+    order: 2;
+    width: 100%;
+  }
+
+  .hero-grid > div:last-child{
+    order: 1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .hero h1{
+    margin: 0;
+    font-size: 0;
+    line-height: 1.02;
+    text-align: center;
+  }
+
+  .hero h1 .role{
+    display:block;
+    font-size: 34px;
+    line-height: 1.05;
+    margin-bottom: 8px;
+  }
+
+  .hero h1 .name{
+    display:block;
+    font-size: 32px;
+    line-height: 1.05;
+    margin-top: 0;
+  }
+
+  .hero p{
+    font-size: 15px;
+    line-height: 1.7;
+    margin-top: 16px;
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .hero p + p{
+    margin-top: 14px;
+  }
+
+  .avatar{
+    width: 190px;
+    min-width: 190px;
+    margin: 0 auto;
+  }
+
+  .social{
+    margin-top: 18px;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items:center;
+    justify-content: center;
+  }
+
+  .icon-btn{
+    width: 50px;
+    height: 50px;
+    border-radius: 14px;
+    font-size: 17px;
+  }
+
+  .icon-btn-wide{
+    height: 50px;
+    padding: 0 16px;
+    border-radius: 14px;
+    font-size: 14px;
+  }
+
+  .social-icon{
+    width: 20px;
+    height: 20px;
+  }
+
+  .section{
+    padding: 70px 0;
+  }
+
+  .section-title{
+    margin-bottom: 18px;
+  }
+
+  .stack-subtitle,
+  .contact-subtitle{
+    text-align: center;
+  }
+
+  .stack-grid{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    width: 100%;
+  }
+
+  .projects-grid{
+    grid-template-columns: 1fr;
+    gap: 18px;
+    justify-items: center;
+  }
+
+  .flip{
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  .flip-inner{
+    height: 420px;
+  }
+
+  .contact{
+    gap: 10px;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 560px){
+  .container{
+    padding: 0 14px;
+  }
+
+  .hero{
+    padding-top: 105px;
+  }
+
+  .hero h1 .role{
+    font-size: 26px;
+  }
+
+  .hero h1 .name{
+    font-size: 24px;
+  }
+
+  .hero p{
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  .avatar{
+    width: 150px;
+    min-width: 150px;
+  }
+
+  .avatar .brush{
+    inset: -20px;
+  }
+
+  .avatar::before{
+    inset: -12px;
+  }
+
+  .avatar::after{
+    inset: -5px;
+  }
+
+  .social{
+    gap: 8px;
+  }
+
+  .icon-btn{
+    width: 46px;
+    height: 46px;
+  }
+
+  .icon-btn-wide{
+    height: 46px;
+    padding: 0 14px;
+    font-size: 13px;
+  }
+
+  .nav-left{
+    font-size: 13px;
+    max-width: 110px;
+  }
+
+  .switch-label{
+    font-size: 10px;
+  }
+
+.toggle{
+  width: 60px;
+  height: 26px;
+}
+
+.knob{
+  width: 20px;
+  height: 20px;
+  left: 3px;
+}
+
+.toggle[data-pos="right"] .knob{
+  left: 37px;
+}
+
+.toggle .icon-left,
+.toggle .txt-left{
+  left: 13px;
+}
+
+.toggle .icon-right,
+.toggle .txt-right{
+  left: 47px;
+}
 }
     </style>
   </head>
